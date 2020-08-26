@@ -1,0 +1,140 @@
+# =========================== Filebeat inputs =============================
+
+filebeat.inputs:
+#-----------------------------  INFO  --------------------------------
+- type: log
+  
+  enabled: true
+  
+  paths: 
+    - /app/dc-engine/{{ inventory_hostname }}/logs/dc_info.log
+ 
+  fields:
+    app_name: engine-{{ inventory_hostname }}
+    level: INFO
+    logtype: engine-log
+  
+  #日志tags
+  tags: [engine-logs]
+
+  #匹配行，后接一个正则表达式列表，默认无，如果启用，则filebeat只输出匹配行，如果同时指定了多行匹配，仍会按照include_lines做过滤
+  include_lines: ['.+ INFO .+']
+
+  #排除空行
+  exclude_lines: ['^$']
+ 
+  #java多行日志合并
+  multiline:
+    pattern:  '^\s*(\d{4})\-(\d{2})\-(\d{2}) \d{2}:\d{2}:\d{2}.\d{3}'   # 指定匹配的表达式（匹配以 2017-11-15 08:04:23:889 时间格式开头的字符串）
+    negate: true         # 是否匹配到
+    match: after
+    max_lines: 1000                             # 最大的行数
+    timeout: 30s                                # 如果在规定的时候没有新的日志事件就不等待后面的日志
+
+  # 如果设置为true，Filebeat从文件尾开始监控文件新增内容，把新增的每一行文件作为一个事件依次发送，而不是从文件开始处重新发送所有内容。
+  tail_files: true
+#----------------------------- WARN  --------------------------------
+- type: log
+
+  enabled: true
+
+  paths:
+    - /app/dc-engine/{{ inventory_hostname }}/logs/dc_warn.log
+
+  fields:
+    app_name: engine-{{ inventory_hostname }}
+    level: WARN
+    logtype: engine-log
+
+  #日志tags
+  tags: [engine-logs]
+
+  #匹配行，后接一个正则表达式列表，默认无，如果启用，则filebeat只输出匹配行，如果同时指定了多行匹配，仍会按照include_lines做过滤
+  include_lines: ['.+ WARN .+']
+
+  #排除空行
+  exclude_lines: ['^$']
+
+  #java多行日志合并
+  multiline:
+    pattern:  '^\s*(\d{4})\-(\d{2})\-(\d{2}) \d{2}:\d{2}:\d{2}.\d{3}'   # 指定匹配的表达式（匹配以 2017-11-15 08:04:23:889 时间格式开头的字符串）
+    negate: true         # 是否匹配到
+    match: after
+    max_lines: 1000                             # 最大的行数
+    timeout: 30s                                # 如果在规定的时候没有新的日志事件就不等待后面的日志
+
+  # 如果设置为true，Filebeat从文件尾开始监控文件新增内容，把新增的每一行文件作为一个事件依次发送，而不是从文件开始处重新发送所有内容。
+  tail_files: true
+
+#----------------------------- ERROR  --------------------------------
+- type: log
+
+  enabled: true
+
+  paths:
+    - /app/dc-engine/{{ inventory_hostname }}/logs/dc_error.log
+
+  fields:
+    app_name: engine-{{ inventory_hostname }}
+    level: ERROR
+    logtype: engine-log
+
+  #日志tags
+  tags: [engine-logs]
+
+  #匹配行，后接一个正则表达式列表，默认无，如果启用，则filebeat只输出匹配行，如果同时指定了多行匹配，仍会按照include_lines做过滤
+  include_lines: ['.+ ERROR .+']
+
+  #排除空行
+  exclude_lines: ['^$']
+
+  #java多行日志合并
+  multiline:
+    pattern:  '^\s*(\d{4})\-(\d{2})\-(\d{2}) \d{2}:\d{2}:\d{2}.\d{3}'   # 指定匹配的表达式（匹配以 2017-11-15 08:04:23:889 时间格式开头的字符串）
+    negate: true         # 是否匹配到
+    match: after
+    max_lines: 1000                             # 最大的行数
+    timeout: 30s                                # 如果在规定的时候没有新的日志事件就不等待后面的日志
+
+  # 如果设置为true，Filebeat从文件尾开始监控文件新增内容，把新增的每一行文件作为一个事件依次发送，而不是从文件开始处重新发送所有内容。
+  tail_files: true
+
+
+#============================= Filebeat modules ===============================
+
+filebeat.config.modules:
+
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: true
+
+#==================== Elasticsearch template setting ==========================
+
+setup.template.settings:
+  index.number_of_shards: 1
+  #index.codec: best_compression
+  #_source.enabled: false
+
+#============================== Kibana =====================================
+setup.kibana:
+  host: "218.17.41.204:20094"
+
+#================================ Outputs =====================================
+
+#-------------------------- Elasticsearch output ------------------------------
+#output.elasticsearch: 
+  # hosts: ["218.17.41.204:20095"]
+  # protocol: "https"
+  # username: "elastic"
+  # password: "6a447134e1ed"
+
+#----------------------------- Logstash output --------------------------------
+output.logstash:
+  hosts: ["218.17.41.204:5044"]
+  #ssl.certificate_authorities: ["/etc/pki/root/ca.pem"]
+  #ssl.certificate: "/etc/pki/client/cert.pem"
+  #ssl.key: "/etc/pki/client/cert.key"
+
+#================================ Processors =====================================
+processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~
