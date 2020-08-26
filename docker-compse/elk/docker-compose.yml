@@ -1,0 +1,127 @@
+version: '3'
+networks:
+  esnet:
+    driver: bridge
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
+    container_name: es01
+    restart: always
+    environment:
+      - TZ="Asia/Shanghai"
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+      - "xpack.security.enabled=true"
+      - "xpack.license.self_generated.type=basic"
+      - "xpack.security.transport.ssl.enabled=true"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - /app/elk/es01/logs:/usr/share/elasticsearch/logs #日志文件挂载
+      - /app/elk/es01/data:/usr/share/elasticsearch/data #数据文件挂载
+      - /app/elk/es01/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml #配置文件挂载
+      - /app/elk/es01/elastic-certificates.p12:/usr/share/elasticsearch/config/elastic-certificates.p12
+    hostname: es01
+    networks:
+      - esnet  
+    ports:
+      - 9200:9200
+      - 9300:9300
+  es02:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
+    container_name: es02
+    restart: always
+    environment:
+      - TZ="Asia/Shanghai"
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - "xpack.security.enabled=true"
+      - "xpack.license.self_generated.type=basic"
+      - "xpack.security.transport.ssl.enabled=true"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - /app/elk/es02/logs:/usr/share/elasticsearch/logs #日志文件挂载
+      - /app/elk/es02/data:/usr/share/elasticsearch/data #数据文件挂载
+      - /app/elk/es02/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml #配置文件挂载
+      - /app/elk/es02/elastic-certificates.p12:/usr/share/elasticsearch/config/elastic-certificates.p12
+    hostname: es02
+    depends_on:
+      - es01
+    networks:
+      - esnet
+    ports:
+      - 9202:9202
+      - 9302:9302
+  es03:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
+    container_name: es03
+    restart: always
+    environment:
+      - TZ="Asia/Shanghai"
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - "xpack.security.enabled=true"
+      - "xpack.license.self_generated.type=basic"
+      - "xpack.security.transport.ssl.enabled=true"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - /app/elk/es03/logs:/usr/share/elasticsearch/logs #日志文件挂载
+      - /app/elk/es03/data:/usr/share/elasticsearch/data #数据文件挂载
+      - /app/elk/es03/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml #配置文件挂载
+      - /app/elk/es03/elastic-certificates.p12:/usr/share/elasticsearch/config/elastic-certificates.p12
+    hostname: es03
+    depends_on:
+      - es01
+    networks:
+      - esnet
+    ports:
+      - 9203:9203
+      - 9303:9303
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.7.0
+    container_name: kibana7
+    environment:
+      - TZ="Asia/Shanghai"
+      - elasticsearch.hosts=http://es01:9200
+    volumes:
+      - /app/elk/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    hostname: kibana
+    depends_on:
+      - es01
+    restart: always
+    ports:
+      - "5601:5601"
+    networks:
+      - esnet
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.7.0
+    container_name: logstash7
+    environment:
+      - TZ="Asia/Shanghai"
+    volumes:
+      - /app/elk/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml #挂载logstash的配置文件
+      - /app/elk/logstash/logstash-febs.conf:/usr/share/logstash/pipeline/logstash.conf #挂载logstash的配置文件
+    hostname: logstash
+    restart: always
+    depends_on:
+      - es01
+    ports:
+      - 9600:9600
+      - 5044:5044
+    networks:
+      - esnet
