@@ -1,0 +1,31 @@
+cluster.name: "es-cluster"
+node.name: es03
+network.host: 0.0.0.0
+network.publish_host: 172.20.0.4
+http.port: 9203
+transport.tcp.port: 9303
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+bootstrap.memory_lock: true
+node.master: true
+node.data: true
+discovery.zen.ping_timeout: 60s
+discovery.seed_hosts:
+  - "es01:9300"
+  - "es02:9302"
+  - "es03:9303"
+cluster.initial_master_nodes: 
+  - "es01:9300"
+  - "es02:9302"
+  - "es03:9303"
+
+xpack.security.enabled: true
+xpack.security.transport.ssl.enabled: true
+#xpack.security.transport.ssl.keystore.type: PKCS12
+xpack.security.transport.ssl.verification_mode: certificate
+xpack.security.transport.ssl.keystore.path: elastic-certificates.p12
+xpack.security.transport.ssl.truststore.path: elastic-certificates.p12
+#xpack.security.transport.ssl.truststore.type: PKCS12
+
+xpack.security.audit.enabled: true
+#xpack.monitoring.collection.enabled: true #默认是 false，设置为 true，表示启用监控数据的收集
