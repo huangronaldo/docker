@@ -15,3 +15,6 @@ jenkins集成ansible-tower / gitlab，实现企业自动化部署
 
 ## sonar
 sonar结合jenkins对代码进行质量扫描与分析
+
+## ansible
+请查阅 https://github.com/huangronaldo/ansible
