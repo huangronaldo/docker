@@ -1,0 +1,9 @@
+server.port: 5601
+server.host: "0.0.0.0"
+elasticsearch.hosts: ["http://es01:9200/"]
+server.name: "kibana"
+elasticsearch.username: "kibana"
+elasticsearch.password: "6a447134e1ed"
+#xpack.monitoring.ui.container.elasticsearch.enabled: "true"  #，默认为 false，对于使用 docker 运行的 elasticsearch，此设置为 true，改变 Node Listing 展示 基于 Cgooup 数据的CPU，增加了 Node Overview 的展示
+#xpack.monitoring.kibana.collection.enabled: true #当使用 beats 收集数据时候需要设置为 false，默认为 true
+#xpack.monitoring.enabled: true  #启用监控数据收集，默认为 true
