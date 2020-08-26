@@ -4,7 +4,11 @@ elk实现单机elasticsearch集群，通过客户端filebeat采集传输日志�
 
 ### elasticsearch集群
 
-### 
+### logstash
+
+### kibana
+
+### filebeat
 
 ## jenkins
 jenkins集成ansible-tower / gitlab，实现企业自动化部署
