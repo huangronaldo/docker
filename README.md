@@ -64,7 +64,7 @@ systemctl restart docker
 ```
 sudo curl -L "https://github.com/docker/compose/releases/download/1.27.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
-* 执行命令
+* 授权docker-compose命令
 ```
 sudo chmod +x /usr/local/bin/docker-compose
 ```
