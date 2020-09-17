@@ -18,9 +18,28 @@ chmod 400 mongodb.key
 
 ### 安装mongodb与配置副本
 #### docker-compose安装启动
-
 * 编写docker-compose.yml文件，参考文件：https://github.com/huangronaldo/docker/edit/master/mongodb/docker-compose.yml
 * 执行docker-compose启动
 ```
 docker-compose up -d
 ```
+
+#### 配置副本集
+* docker exec命令进入容器: `docker exec -it mongo01 /bin/bash`
+* mongo命令进入mongodb: `mongo -u root -p mongodb`
+* mongo初始化命令初始化:
+```
+rs.initiate({
+    _id: "mongos",
+    members: [
+        { _id : 0, host : "192.168.0.53:27017" },
+        { _id : 1, host : "192.168.0.53:27018" },
+        { _id : 2, host : "192.168.0.53:27019" }
+    ]
+});
+
+# 如果显示如下，则表示执行初始化OK
+{ "ok" : 1 }
+```
+* rs.status()查看当前副本集状态
+
