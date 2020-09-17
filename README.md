@@ -69,23 +69,23 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.27.2/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-
-## elk
+## docker 部署应用
+### elk
 elk实现单机elasticsearch集群，通过客户端filebeat采集传输日志文件，logstash分析，最终写入elasticsearch；kibana可视化查看日志。目前已经支持上百台客户端机器日志上传，服务器端机器配置为8核16G。
 
-### elasticsearch集群
+#### elasticsearch集群
 
-### logstash
+#### logstash
 
-### kibana
+#### kibana
 
 ### filebeat
 
-## jenkins
+### jenkins
 jenkins集成ansible-tower / gitlab，实现企业自动化部署
 
-## sonar
+### sonar
 sonar结合jenkins对代码进行质量扫描与分析
 
-## ansible
+### 其他工具 - ansible
 请查阅 https://github.com/huangronaldo/ansible
