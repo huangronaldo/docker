@@ -6,13 +6,13 @@ services:
     restart: always
     container_name: mongo01
     volumes:
-      - ./data/db/mongo01:/data/db
-      - ./mongodb.key:/data/mongodb.key
+      - /app/mongodb/mongo01/data/db:/data/db
+      - /app/mongodb/mongodb.key:/data/mongodb.key
     ports:
       - 27017:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: mongodb
     networks:
       - mongo
     command: mongod --replSet mongos --keyFile /data/mongodb.key
@@ -22,20 +22,19 @@ services:
       - |
         chmod 400 /data/mongodb.key
         chown 999:999 /data/mongodb.key
-        exec docker-entrypoint.sh ?@
-
+        exec docker-entrypoint.sh  $$@
   mongodb02:
     image: mongo
     restart: always
     container_name: mongo02
     volumes:
-      - ./data/db/mongo02:/data/db
-      - ./mongodb.key:/data/mongodb.key
+      - /app/mongodb/mongo02/data/db:/data/db
+      - /app/mongodb/mongodb.key:/data/mongodb.key
     ports:
       - 27018:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: mongodb
     networks:
       - mongo
     command: mongod --replSet mongos --keyFile /data/mongodb.key
@@ -45,20 +44,19 @@ services:
       - |
         chmod 400 /data/mongodb.key
         chown 999:999 /data/mongodb.key
-        exec docker-entrypoint.sh ?@
-
+        exec docker-entrypoint.sh  $$@
   mongodb03:
     image: mongo
     restart: always
     container_name: mongo03
     volumes:
-      - ./data/db/mongo03:/data/db
-      - ./mongodb.key:/data/mongodb.key
+      - /app/mongodb/mongo03/data/db:/data/db
+      - /app/mongodb/mongodb.key:/data/mongodb.key
     ports:
       - 27019:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: mongodb
     networks:
       - mongo
     command: mongod --replSet mongos --keyFile /data/mongodb.key
@@ -68,8 +66,8 @@ services:
       - |
         chmod 400 /data/mongodb.key
         chown 999:999 /data/mongodb.key
-        exec docker-entrypoint.sh ?@
-    
+        exec docker-entrypoint.sh  $$@
+
 networks:
   mongo:
     driver: bridge
