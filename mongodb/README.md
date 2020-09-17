@@ -16,3 +16,11 @@ chmod 400 mongodb.key
 ```
 * 每一个副本集成员都要使用相同的keyFile文件
 
+### 安装mongodb与配置副本
+#### docker-compose安装启动
+
+* 编写docker-compose.yml文件，参考文件：https://github.com/huangronaldo/docker/edit/master/mongodb/docker-compose.yml
+* 执行docker-compose启动
+```
+docker-compose up -d
+```
