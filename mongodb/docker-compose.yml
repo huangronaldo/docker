@@ -14,7 +14,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     networks:
-      - mongoNet
+      - mongo
     command: mongod --replSet mongos --keyFile /data/mongodb.key
     entrypoint:
       - bash
@@ -37,7 +37,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     networks:
-      - mongoNet
+      - mongo
     command: mongod --replSet mongos --keyFile /data/mongodb.key
     entrypoint:
       - bash
@@ -60,7 +60,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     networks:
-      - mongoNet
+      - mongo
     command: mongod --replSet mongos --keyFile /data/mongodb.key
     entrypoint:
       - bash
