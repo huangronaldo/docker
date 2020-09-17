@@ -43,3 +43,34 @@ rs.initiate({
 ```
 * rs.status()查看当前副本集状态
 
+#### 新增副本节点
+* 使用docker-compose新增副本节点
+```
+version: '3'
+
+services:
+  mongodb:
+    image: mongo
+    restart: always
+    container_name: mongo04
+    volumes:
+      - /app/mongodb/mongo04/data/db:/data/db
+      - /app/mongodb/mongodb.key:/data/mongodb.key
+    ports:
+      - 27020:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: mongodb
+    command: mongod --replSet mongos --keyFile /data/mongodb.key
+    entrypoint:
+      - bash
+      - -c
+      - |
+        chmod 400 /data/mongodb.key
+        chown 999:999 /data/mongodb.key
+        exec docker-entrypoint.sh $$@
+```
+* 进入mongo主节点添加副本节点
+```
+rs.add("192.168.0.111:27020")
+```
