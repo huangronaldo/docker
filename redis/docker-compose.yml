@@ -1,0 +1,15 @@
+version: '3'
+services:
+  redis:
+    image: redis:5.0.9-alpine
+    container_name: redis-office
+    volumes:
+      - /app/redis/data:/data
+      - /app/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - /app/redis/logs:/logs
+    command:
+      # 两个写入操作 只是为了解决启动后警告 可以去掉
+      redis-server /usr/local/etc/redis/redis.conf --appendonly yes
+      # echo 511 > /proc/sys/net/core/somaxconn && echo never > /sys/kernel/mm/transparent_hugepage/enabled && redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
