@@ -14,7 +14,7 @@ services:
     restart: always
     environment:
       TZ: Asia/Shanghai
-      MYSQL_ROOT_PASSWORD: '8h82f4de8ca559ae960d5ced7bdd3f03'
+      MYSQL_ROOT_PASSWORD: '12345678'
     ports:
       - "3306:3306"
     networks:
@@ -108,7 +108,7 @@ mysql -uroot -p12345678 -P3307 127.0.0.1
 * 配置同步主库信息
 ```
 # master_log_file 和master_log_pos对应主库信息
-change master to master_host='127.0.0.1',master_user='slave_user',
+change master to master_host='172.20.0.1',master_user='slave_user',
 master_password='slave_user_2020',master_log_file='master-bin.000001',master_log_pos=676;
 start slave;
 # 查看从库同步状态
