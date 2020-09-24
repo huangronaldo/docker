@@ -1,0 +1,22 @@
+version: '3'
+services:
+  #服务名称
+  mssql:
+    #容器名称
+    container_name: mssql
+    #镜像名称
+    image: microsoft/mssql-server-linux:2017-latest
+    #总是重启后启动
+    restart: always
+    #端口映射
+    ports:
+      - 1433:1433
+    #挂载
+    volumes:
+      - /app/mssql/data:/var/lib/rabbitmq
+    #环境变量
+    environment:
+      - ACCEPT_EULA=Y
+      #SA用户密码
+      - SA_PASSWORD=Shudi@524
+      
