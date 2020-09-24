@@ -109,7 +109,7 @@ mysql -uroot -p12345678 -P3307 127.0.0.1
 ```
 # master_log_file 和master_log_pos对应主库信息
 change master to master_host='172.20.0.1',master_user='slave_user',
-master_password='slave_user_2020',master_log_file='master-bin.000001',master_log_pos=676;
+master_password='slave_user_2020',master_log_file='mariadb-bin.000001',master_log_pos=676;
 start slave;
 # 查看从库同步状态
 show slave status\G 
