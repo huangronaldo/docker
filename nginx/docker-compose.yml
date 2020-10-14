@@ -15,7 +15,7 @@ services:
       - /app/nginx/html/:/usr/share/nginx/html/
       - /app/nginx/logs/:/var/log/nginx/
     networks:
-      - office-nginx
+      - nginx-network
 networks:
   office-nginx:
     driver: bridge
