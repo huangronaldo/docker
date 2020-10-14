@@ -17,5 +17,5 @@ services:
     networks:
       - nginx-network
 networks:
-  office-nginx:
+  nginx-network:
     driver: bridge
