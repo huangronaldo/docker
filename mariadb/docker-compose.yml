@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  mariadb01:
+    image: mariadb:10.4.13
+    container_name: mm01
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: '12345678'
+    ports:
+      - "3306:3306"
+    networks:
+      - mariadb
+    volumes:
+      - /app/mariadb/mm01/datadir:/var/lib/mysql
+      - /app/mariadb/mm01/my.cnf:/etc/mysql/my.cnf
+
+  mariadb02:
+    image: mariadb:10.4.13
+    container_name: ms01
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: '12345678'
+    ports:
+      - "3307:3306"
+    networks:
+      - mariadb
+    volumes:
+      - /app/mariadb/ms01/datadir:/var/lib/mysql
+      - /app/mariadb/ms01/my.cnf:/etc/mysql/my.cnf        
+
+networks:
+  mariadb:
+    driver: bridge  
