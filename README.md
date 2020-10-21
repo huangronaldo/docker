@@ -70,12 +70,18 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.27.2/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 ## docker 常用命令
-* 容器生命周期管理 — `docker [run|start|stop|restart|kill|rm|pause|unpause]`
-* 容器操作运维 — `docker [ps|inspect|top|attach|events|logs|wait|export|port]`
-* 容器rootfs命令 — `docker [commit|cp|diff]`
-* 镜像仓库 — `docker [login|pull|push|search]`
-* 本地镜像管理 — `docker [images|rmi|tag|build|history|save|import]`
-* 其他命令 — `docker [info|version]`
+* 容器生命周期管理 
+  * — `docker [run|start|stop|restart|kill|rm|pause|unpause]`
+* 容器操作运维 
+  * — `docker [ps|inspect|top|attach|events|logs|wait|export|port]`
+* 容器rootfs命令 
+  * — `docker [commit|cp|diff]`
+* 镜像仓库 
+  * — `docker [login|pull|push|search]`
+* 本地镜像管理 
+  * — `docker [images|rmi|tag|build|history|save|import]`
+* 其他命令 
+  * — `docker [info|version]`
 
 ## docker 部署应用
 ### elk
