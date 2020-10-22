@@ -58,7 +58,7 @@
     * DebugLevel：日志级别
     * LogFile：日志文件
     * LogFileSize：日志文件大小，超过自动切割
-    * LogShowQueries：数据库慢查询记录，单位为ms
+    * LogSlowQueries：数据库慢查询记录，单位为ms
     * PidFile：PID文件
     * ProxyConfigFrequency：proxy被动模式下，server用多少秒同步配置文件至proxy
     * ProxyDataFrequency：被动模式下，server间隔多少秒向proxy请求历史数据
@@ -85,7 +85,26 @@
     * DataSenderFrequency：proxy向server发送数据的时间间隔
     * StartPollers：proxy线程池数量
     * StartDiscoverers：发现规则线程数
-
+    * CacheSize：内存缓存配置
+    * StartDBSyncers：同步数据线程数
+    * HistoryCacheSize：历史数据缓存大小
+    * LogSlowQueries：慢查询日志记录，单位为ms
+    * Timeout：连接超时时间
+  * zabbix_agentd.conf 配置文件参数详解如下：
+    * EnableRemoteCommands：运行服务器端远程至客户端执行命令或者脚本
+    * Hostname：客户端主机名
+    * ListenIP：监听的IP地址
+    * ListenPort：客户端监听端口
+    * LoadModulePath：模块路径
+    * LogFile：日志文件路径
+    * PidFile：PID文件
+    * Server：指定server IP地址
+    * ServerActive： zabbix主动监控server IP地址
+    * StartAgents：agent启动进程，如果为0，表示禁用被动监控
+    * Timeout：超时时间
+    * User：运行zabbix的用户
+    * User：的
+  
     
     
 
