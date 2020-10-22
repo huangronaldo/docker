@@ -1,5 +1,5 @@
 # Zabbix 监控企业实战
-## zabbix 入门简介
+## Zabbix 入门简介
   Zabbix 是一个基于web界面的提供分布式监控的企业级开源解决方案，zabbix能监控各种网络参数，保证服务器系统安全稳定运行，并提供灵活的通知机制以让SA快速定位并解决存在的各种问题。zabbix分布式监控系统优点如下：
   * 支持自动发现服务器和网络设备
   * 支持底层自动发现
@@ -13,10 +13,10 @@
   * 高水平的业务视图监控资源，支持日志审计/资产管理等功能
   * 支持高水平API二次开发/脚本监控，自定义key定义，自动化运维整合调用
 
-## zabbix 监控组件和流程
-  zabbix监控组件主要由三大部分组成：zabbix server端、zabbix proxy、agent客户端，其中zabbix server端包含web gui、database、zabbix server。
+## Zabbix 监控组件和流程
+  Zabbix监控组件主要由三大部分组成：zabbix server端、zabbix proxy、agent客户端，其中zabbix server端包含web gui、database、zabbix server。
 
-## zabbix 监控概念
+## Zabbix 监控概念
   * 主机（host）：被监控的网络设备，可以写IP或者DNS
   * 主机组（host group）：主机组用于管理主机，可以批量设置权限
   * 监控项（item）：具体监控想，items值由独立的keys进行识别
@@ -36,10 +36,22 @@
   
   
 ## 安装zabbix（docker-compose方式）
-> zabbix监控平台部署，至少需要安装4个组件：zabbix server、zabbix web、databases、zabbix agent。
+> Zabbix监控平台部署，至少需要安装4个组件：zabbix server、zabbix web、databases、zabbix agent。
 
 > 官方docker安装文档：https://github.com/zabbix/zabbix-docker
 
 * 下载 docker-compose.yml 与 环境配置信息文件
 * 执行安装命令`docker-compose up -d`
 * 登录http://127.0.0.1:8081/ ，默认账号密码：Admin/zabbix
+
+## Zabbix 配置文件详解
+  Zabbix监控系统组件分为server / proxy / agentd 端，对各组件的参数进行详细了解，能够更加深入理解 Zabbix 监控功能以及对 Zabbix 进行调优，3个组件的常用参数详情如下：
+  * zabbix_server.conf 配置文件参数详解如下：
+    * DBHost：数据库主机地址
+    * DBName：数据库名称
+    * DBPassword：数据库密码
+    * DBPort：数据库端口
+    * AlertScriptsPath：告警
+    
+    
+
