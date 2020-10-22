@@ -103,7 +103,9 @@
     * StartAgents：agent启动进程，如果为0，表示禁用被动监控
     * Timeout：超时时间
     * User：运行zabbix的用户
-    * User：的
+    * UserParameter：用户自定义key
+    * BufferSize：缓冲区大小
+    * DebugLevel：日志级别
   
     
     
