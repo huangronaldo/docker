@@ -15,10 +15,28 @@
 
 ## zabbix 监控组件和流程
   zabbix监控组件主要由三大部分组成：zabbix server端、zabbix proxy、agent客户端，其中zabbix server端包含web gui、database、zabbix server。
- 
 
+## zabbix 监控概念
+  * 主机（host）：被监控的网络设备，可以写IP或者DNS
+  * 主机组（host group）：主机组用于管理主机，可以批量设置权限
+  * 监控项（item）：具体监控想，items值由独立的keys进行识别
+  * 触发器（trigger）：为某个items设置触发器，达到触发器会执行action动作
+  * 事件（event）：例如达到某个触发器，称之为一个事件
+  * 动作（action）：对于特定事件事先定义的处理方法，默认可以发送信息以及发送命令
+  * 报警升级（escalation）：发送警报或执行远程命令的自定义方案，如隔5min发送一次警报，共发送5次
+  * 媒介（media）：发送通知等方式，可以支持mail / sms / scripts等
+  * 通知（notification）：通过设置的媒介向用户发送的有关某事件的信息
+  * 远程命令（remote command）：达到触发器，可以在被监控端执行命令
+  * 模板（template）：可以快速监控被监控端，模块包含item、trigger、graph、screen、application
+  * Web场景（Web scenario）：用于检测web站点可用性，监控HTTP关键词
+  * Web签订（frontend）：zabbix 的web接口
+  * 图形（graph）：监控图像
+  * 屏幕（screens）：屏幕显示
+  * 幻灯（slide show）：幻灯显示
+  
   
 ## 安装zabbix（docker-compose方式）
+> zabbix监控平台部署，至少需要安装4个组件：zabbix server、zabbix web、databases、zabbix agent
 > 官方docker安装文档：https://github.com/zabbix/zabbix-docker
 
 * 下载 docker-compose.yml 与 环境配置信息文件
