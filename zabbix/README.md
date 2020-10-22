@@ -49,6 +49,7 @@
   * zabbix_server.conf 配置文件参数详解如下：
     * DBHost：数据库主机地址
     * DBName：数据库名称
+    * DBUser：数据库用户
     * DBPassword：数据库密码
     * DBPort：数据库端口
     * AlertScriptsPath：告警脚本存放路径
@@ -62,7 +63,29 @@
     * ProxyConfigFrequency：proxy被动模式下，server用多少秒同步配置文件至proxy
     * ProxyDataFrequency：被动模式下，server间隔多少秒向proxy请求历史数据
     * StartDiscoverers：发现规则线程数
-    * Timeout：连接
+    * Timeout：连接超时时间
+    * TrendCacheSize：历史数据缓存大小
+    * User：Zabbix 运行的用户
+    * HistoryCacheSize：历史记录缓存大小
+    * ListenIP：监听本机的IP地址
+    * ListenPort：监听端口
+    * LoadModule：模块名称
+    * LoadModulePath：模块路径
+  * zabbix_proxy.conf 配置文件参数详解如下：
+    * ProxyMode：proxy工作模式，默认为主动模式，主动发送数据至server
+    * Server：指定Server端地址
+    * ServerPort：server端端口
+    * Hostname：proxy代理端
+    * DBHost：数据库主机地址
+    * DBName：数据库名称
+    * DBUser：数据库用户
+    * DBPassword：数据库密码
+    * DBPort：数据库端口
+    * DBSocket：proxy数据库socket路径
+    * DataSenderFrequency：proxy向server发送数据的时间间隔
+    * StartPollers：proxy线程池数量
+    * StartDiscoverers：发现规则线程数
+
     
     
 
