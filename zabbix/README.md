@@ -36,7 +36,8 @@
   
   
 ## 安装zabbix（docker-compose方式）
-> zabbix监控平台部署，至少需要安装4个组件：zabbix server、zabbix web、databases、zabbix agent
+> zabbix监控平台部署，至少需要安装4个组件：zabbix server、zabbix web、databases、zabbix agent。
+
 > 官方docker安装文档：https://github.com/zabbix/zabbix-docker
 
 * 下载 docker-compose.yml 与 环境配置信息文件
