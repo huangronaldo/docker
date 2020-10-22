@@ -51,7 +51,18 @@
     * DBName：数据库名称
     * DBPassword：数据库密码
     * DBPort：数据库端口
-    * AlertScriptsPath：告警
+    * AlertScriptsPath：告警脚本存放路径
+    * CacheSize：存储监控数据的缓存
+    * CacheUpdateFrequency：更新一次缓存时间
+    * DebugLevel：日志级别
+    * LogFile：日志文件
+    * LogFileSize：日志文件大小，超过自动切割
+    * LogShowQueries：数据库慢查询记录，单位为ms
+    * PidFile：PID文件
+    * ProxyConfigFrequency：proxy被动模式下，server用多少秒同步配置文件至proxy
+    * ProxyDataFrequency：被动模式下，server间隔多少秒向proxy请求历史数据
+    * StartDiscoverers：发现规则线程数
+    * Timeout：连接
     
     
 
