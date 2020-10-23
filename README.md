@@ -82,6 +82,21 @@ sudo chmod +x /usr/local/bin/docker-compose
   * `docker [images|rmi|tag|build|history|save|import]`
 * 其他命令 
   * `docker [info|version]`
+ 
+* 基本命令实例
+``` 
+sudo service docker start
+sudo service docker stop
+sudo service docker restart
+docker image ls
+docker image pull library/hello-world
+docker image rm 镜像id/镜像ID
+docker run [选项参数] 镜像名 [命令]
+docker container stop 容器名或容器id
+docker container start 容器名或容器id
+docker container kill 容器名或容器id
+docker container rm 容器名或容器id
+```
 
 ## docker 部署应用
 ### elk
