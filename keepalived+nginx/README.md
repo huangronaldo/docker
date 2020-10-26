@@ -1,8 +1,8 @@
 # docker-compose模拟部署keepalived + haproxy + nginx
 
 ## docker-compose
-1. 一主一备 keepalived + nginx
-2. haproxy
+1. keepalived + nginx（一主一备 共2台） 
+2. haproxy（1台）
 
 # 配置文件详解
 
