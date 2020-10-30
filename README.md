@@ -3,6 +3,8 @@
 ## 安装docker
 
 ### 添加阿里云源
+> 直接使用官方的docker源会比较慢，可选择先添加阿里云进行安装
+
   * 允许apt通过https使用repository安装软件包
   ```
   apt-get update
