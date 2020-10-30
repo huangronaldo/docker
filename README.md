@@ -99,4 +99,4 @@ docker container rm 容器名或容器id
 ```
 
 ## 其他工具 - ansible
-请查阅 https://github.com/huangronaldo/ansiblex
+请查阅 https://github.com/huangronaldo/ansible
