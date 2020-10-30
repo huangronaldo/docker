@@ -1,6 +1,8 @@
 version: "3"
 services:
   nginx_master:
+    container_name: nginx_keepalived_master_01
+    restart: always
     build:
       context: ./
       dockerfile: ./Dockerfile
@@ -8,35 +10,46 @@ services:
       - ./nginx-master/index-master.html:/usr/share/nginx/html/index.html
       - ./nginx-master/favicon.ico:/usr/share/nginx/html/favicon.ico
       - ./nginx-master/keepalived-master.conf:/etc/keepalived/keepalived.conf
+    environment:
+      TZ: Asia/Shanghai
     networks:
       static-network:
-        ipv4_address: 172.20.128.2
+        ipv4_address: 172.30.128.2
     cap_add: 
       - NET_ADMIN
   nginx_slave:
+    container_name: nginx_keepalived_slave_01
+    restart: always
     build:
       context: ./
       dockerfile: ./Dockerfile
     volumes:
-      - ./nginx-salve/index-slave.html:/usr/share/nginx/html/index.html
-      - ./nginx-salve/favicon.ico:/usr/share/nginx/html/favicon.ico
-      - ./nginx-salve/keepalived-slave.conf:/etc/keepalived/keepalived.conf
+      - ./nginx-slave/index-slave.html:/usr/share/nginx/html/index.html
+      - ./nginx-slave/favicon.ico:/usr/share/nginx/html/favicon.ico
+      - ./nginx-slave/keepalived-slave.conf:/etc/keepalived/keepalived.conf
+    environment:
+      TZ: Asia/Shanghai
     networks:
       static-network:
-        ipv4_address: 172.20.128.3
+        ipv4_address: 172.30.128.3
     cap_add: 
         - NET_ADMIN
   proxy:
+    container_name: haproxy
+    restart: always
     image: haproxy:2.2.4-alpine
     ports:
       - 8000:6301
     volumes:
       - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    environment:
+      TZ: Asia/Shanghai
     networks:
-      - static-network
+      static-network:
+        ipv4_address: 172.30.128.250 
 
 networks:
   static-network:
     ipam:
       config:
-        - subnet: 172.20.0.0/16
+        - subnet: 172.30.0.0/16
