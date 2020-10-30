@@ -2,7 +2,7 @@
 
 ## 安装docker
 
-### 更改成阿里云源安装
+### 添加阿里云源
   * 允许apt通过https使用repository安装软件包
   ```
   apt-get update
