@@ -2,7 +2,7 @@
 
 ## 安装docker
 
-* 使用阿里云源进行安装
+### 更改成阿里云源安装
   * 允许apt通过https使用repository安装软件包
   ```
   apt-get update
@@ -34,11 +34,11 @@
   apt-get update
   ```
   
-* 安装docker
+### 安装docker
 ```
 apt install docker.io
 ```
-* 修改docker配置
+### 修改docker配置
 ```
 vim /etc/docker/daemon.json
 ```
@@ -54,7 +54,7 @@ vim /etc/docker/daemon.json
   "exec-opts": ["native.cgroupdriver=systemd"]
 }
 ```
-* 重启docker
+### 重启docker
 ```
 systemctl daemon-reload
 systemctl restart docker
