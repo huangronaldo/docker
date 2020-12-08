@@ -67,6 +67,9 @@ systemctl restart docker
 * 下载安装docker-compose
 ```
 sudo curl -L "https://github.com/docker/compose/releases/download/1.27.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# 如果以上的请求很慢，选择下面。
+sudo curl -L https://get.daocloud.io/docker/compose/releases/download/1.27.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+
 ```
 * 授权docker-compose命令
 ```
