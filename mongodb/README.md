@@ -27,7 +27,7 @@ docker-compose up -d
 #### 配置副本集
 * docker exec命令进入容器: `docker exec -it mongo01 /bin/bash`
 * mongo命令进入mongodb: `mongo -u root -p mongodb`
-* mongo初始化命令初始化:
+* mongo初始化命令初始化（以下IP需要改为宿主机内网IP）：
 ```
 rs.initiate({
     _id: "mongos",
