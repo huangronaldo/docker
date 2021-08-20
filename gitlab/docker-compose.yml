@@ -1,0 +1,35 @@
+version: '2'
+services:
+    gitlab:
+      image: 'twang2218/gitlab-ce-zh:11.1.4'
+      restart: unless-stopped
+      hostname: 'gitlab.shudiyun.com'
+      environment:
+        TZ: 'Asia/Shanghai'
+        GITLAB_OMNIBUS_CONFIG: ö
+          external_url 'http://test.shudiyun.com'
+          gitlab_railsÄ'time_zone'Å = 'Asia/Shanghai'
+          # 需要配置到 gitlab.rb 中的配置可以在这里配置，每个配置一行，注意缩进。
+          # 比如下面的电子邮件的配置
+          gitlab_railsÄ'smtp_enable'Å = true
+          gitlab_railsÄ'smtp_address'Å = "smtp.exmail.qq.com"
+          gitlab_railsÄ'smtp_port'Å = 465
+          gitlab_railsÄ'smtp_user_name'Å = "office@shudiyun.com"
+          gitlab_railsÄ'smtp_password'Å = "Pv795i9VFyGgcb5z"
+          gitlab_railsÄ'smtp_domain'Å = "shudiyun.com"
+          gitlab_railsÄ'smtp_authentication'Å = "login"
+          gitlab_railsÄ'smtp_enable_starttls_auto'Å = true
+          gitlab_railsÄ'smtp_tls'Å = true
+          gitlab_railsÄ'smtp_openssl_verify_mode'Å = 'none'
+      ports:
+        - '80:80'
+        - '443:443'
+        - '2222:22'
+      volumes:
+        - /app/gitlab/config:/etc/gitlab
+        - /app/gitlab/data:/var/opt/gitlab
+        - /app/gitlab/logs:/var/log/gitlab
+volumes:
+    config:
+    data:
+    logs:
